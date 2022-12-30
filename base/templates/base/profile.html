@@ -1,0 +1,101 @@
+{%extends 'main.html'%}
+{%block content%}
+  <main class="profile-page layout layout--3">
+    <div class="container">
+      <!-- Topics Start -->
+      {%include 'base/topics_component.html'%}
+      <!-- Topics End -->
+
+      <!-- Room List Start -->
+      <div class="roomList">
+        <div class="profile">
+          <div class="profile__avatar">
+            <div class="avatar avatar--large active">
+              <img src="{{user.avatar.url}}" />
+            </div>
+          </div>
+          <div class="profile__info">
+            <h3>{{user.username}}</h3>
+            <p>@{{user.username}}</p>
+            {%if request.user == user%}
+              <a href="{%url 'update-user'%}" class="btn btn--main btn--pill">Edit Profile</a>
+            {%endif%}
+          </div>
+          {%if user.bio%}
+          <div class="profile__about">
+
+            <h3>About</h3>
+
+            <p>
+              {{user.bio}}
+            </p>
+
+          </div>
+          {%endif%}
+        </div>
+
+        <div class="roomList__header">
+          <div>
+            <h2>Study Rooms Hosted by {{user.username}}</a>
+            </h2>
+          </div>
+        </div>
+        {%include 'base/feed_component.html'%}
+      </div>
+      <!-- Room List End -->
+
+      <!-- Activities Start -->
+      <div class="activities">
+          <div class="activities__header">
+            <h2>Recent Activities</h2>
+          </div>
+          {%if page_object%}
+            {%for message in page_object.object_list%}
+            <div class="activities__box">
+              <div class="activities__boxHeader roomListRoom__header">
+                <a href="{%url 'profile' message.user.id%}" class="roomListRoom__author">
+                  <div class="avatar avatar--small">
+                    <img src="{{message.user.avatar.url}}" />
+                  </div>
+                  <p>
+                    @{{message.user.username}}
+                    <span>{{message.created|timesince}} ago</span>
+                  </p>
+                </a>
+                {%if request.user == message.user %}
+                <div class="roomListRoom__actions">
+                  <a href="{% url 'delete-message' message.id%}">
+                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+                      <title>Delete</title>
+                      <path
+                        d="M27.314 6.019l-1.333-1.333-9.98 9.981-9.981-9.981-1.333 1.333 9.981 9.981-9.981 9.98 1.333 1.333 9.981-9.98 9.98 9.98 1.333-1.333-9.98-9.98 9.98-9.981z"
+                      ></path>
+                    </svg>
+                  </a>
+                </div>
+                {%endif%}
+              </div>
+              <div class="activities__boxContent">
+                <p>replied to post “<a href="{%url 'group' message.room.id%}">{{message.room}}</a>”</p>
+                <div class="activities__boxRoomContent">
+                  {{message}}
+                </div>
+              </div>
+            </div>
+            {%endfor%}
+            <nav class="bt-3 ms-4">
+              <ul class="pagination">
+                  {% if page_object.has_previous %}
+                      <li class="page-item"><a class="page-link" href="?page={{page_object.previous_page_number}}"><<</a></li>
+                  {% endif %}
+                  {% if page_object.has_next%}
+                      <li class="page-item"><a class="page-link" href="?page={{ page_object.next_page_number }}">>></a></li>
+                  {% endif %}
+              </ul>
+            </nav>
+          {%endif%}
+      </div>
+      <!-- Activities End -->
+    </div>
+  </main>
+{%endblock%}
