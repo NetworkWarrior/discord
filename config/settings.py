@@ -90,6 +90,6 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Media files (user uploads like profile pics)
 MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'  # Changed from static/images to media for uploads
+MEDIA_ROOT = BASE_DIR / 'static/images'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
