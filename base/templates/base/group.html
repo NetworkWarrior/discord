@@ -111,16 +111,11 @@
               </div>
             </div>
           </div>
-           <div class="room__message">
-              <form action="" method="post">
-                {% csrf_token %}
-                <div class="input-container">
-                  <input name="body" placeholder="Write your message here..." />
-                  <button type="submit" class="btn-submit">Send</button>
-                </div>
-              </form>
-            </div>
-
+          <div class="room__message">
+            <form action="" method="post">{%csrf_token%}
+              <input name="body" placeholder="Write your message here..." />
+            </form>
+          </div>
         </div>
         <!-- Room End -->
 
