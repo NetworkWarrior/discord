@@ -8,6 +8,7 @@ env = environ.Env(
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# Read environment variables from .env file
 environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
 SECRET_KEY = env('SECRET_KEY')
@@ -21,7 +22,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'base',
+    'base',  # Your custom app
     'rest_framework',
 ]
 
@@ -81,14 +82,14 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
-# ✅ Static files (Production-ready with WhiteNoise)
+# Static files (Production-ready with WhiteNoise)
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'static-files'
 STATICFILES_DIRS = [BASE_DIR / 'static']
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-# Media (optional if you're using images/uploads)
+# Media files (user uploads like profile pics)
 MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'static/images'
+MEDIA_ROOT = BASE_DIR / 'media'  # Changed from static/images to media for uploads
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
