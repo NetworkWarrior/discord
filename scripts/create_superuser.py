@@ -1,10 +1,11 @@
 import os
 import django
 from django.core.management import call_command
-from django.contrib.auth.models import User
+from django.contrib.auth.models import get_user_model
 from django.conf import settings
 
-# Initialize Django
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings')
+
 django.setup()
 
 def create_superuser():
@@ -13,7 +14,6 @@ def create_superuser():
     email = os.getenv('SUPERUSER_EMAIL')
     password = os.getenv('SUPERUSER_PASSWORD')
 
-    # Check if a superuser already exists
     if not User.objects.filter(username=username).exists():
         User.objects.create_superuser(username=username, email=email, password=password)
         print(f'Superuser {username} created successfully!')
