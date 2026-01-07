@@ -7,11 +7,11 @@
             <div class="activities__boxHeader roomListRoom__header">
               <a href="{%url 'profile' message.user.id%}" class="roomListRoom__author">
                 <div class="avatar avatar--small">
-                    {%if message.user.avatar%}
-                  <img src="{{message.user.avatar.url}}" />
-                    {%else%}
-                  <img src="/static/images/avatar.svg" />
-                    {%endif%}
+              {%if message.user.avatar%}
+            <img src="{{message.user.avatar.url}}" />
+              {%else%}
+             <img src="/static/images/avatar.svg" /> 
+              {%endif%}
                 </div>
                 <p>
                   @{{message.user.username}}
@@ -47,6 +47,7 @@
             </svg>
           </a>
 </div>
+
 
 
 
