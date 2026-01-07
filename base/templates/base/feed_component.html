@@ -4,7 +4,10 @@
             <div class="roomListRoom__header">
               <a href="{%url 'profile' group.host.id%}" class="roomListRoom__author">
                 <div class="avatar avatar--small">
-                  <img src="{{group.host.avatar.url}}" />
+                  {% if group.host.avatar %}
+                    <img src="{{group.host.avatar.url}}" />
+                  {% else %}
+                    <img src="/static/images/avatar.svg" /> {% endif %}
                 </div>
                 <span>@{{group.host.username}}</span>
               </a>
@@ -50,6 +53,7 @@
         </ul>
     </nav>
 {% endif %}
+
 
 
 
