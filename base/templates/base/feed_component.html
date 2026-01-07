@@ -8,9 +8,8 @@
                       {% if group.host.avatar %}
                         <img src="{{group.host.avatar.url}}" />
                       {% else %}
-                        <img src="/static/images/avatar.svg" /> {% endif %}
-                    </div>
-                    <img src="/static/images/avatar.svg" /> {% endif %}
+                        <img src="/static/images/avatar.svg" /> 
+                      {% endif %}
                 </div>
                 <span>@{{group.host.username}}</span>
               </a>
@@ -56,6 +55,7 @@
         </ul>
     </nav>
 {% endif %}
+
 
 
 
