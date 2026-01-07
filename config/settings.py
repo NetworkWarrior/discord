@@ -11,6 +11,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Read environment variables from .env file
 environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
+
 SECRET_KEY = env('SECRET_KEY')
 DEBUG = env('DEBUG')
 ALLOWED_HOSTS = ['*']
@@ -82,14 +83,18 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 
-# Static files (Production-ready with WhiteNoise)
+# --- Static files (CSS, JavaScript, Images) ---
 STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / 'static-files'
-STATICFILES_DIRS = [BASE_DIR / 'static']
+STATIC_ROOT = BASE_DIR / 'staticfiles' # Standard name for collected files
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',
+]
+
+# Optimized for WhiteNoise (Production)
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-# Media files (user uploads like profile pics)
-MEDIA_URL = '/images/'
-MEDIA_ROOT = BASE_DIR / 'static/images'
+# --- Media files (User uploads) ---
+MEDIA_URL = '/media/' # Changed from /images/ for standard naming
+MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
