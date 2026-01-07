@@ -61,7 +61,7 @@
                 <a href="{%url 'profile' message.user.id%}" class="roomListRoom__author">
                   <div class="avatar avatar--small">
                     {%if message.user.avatar}
-                    <img src="{{message.user.avatar.url}}" />
+                    <img src="{{message.user.avatar.url%}" />
                     {%else%}
                     <img src="/static/images/avatar.svg" />
                     {%endif%}
