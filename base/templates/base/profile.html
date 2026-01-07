@@ -10,8 +10,12 @@
       <div class="roomList">
         <div class="profile">
           <div class="profile__avatar">
+           
             <div class="avatar avatar--large active">
-              <img src="{{user.avatar.url}}" />
+              {% if user.avatar %}
+                <img src="{{user.avatar.url}}" />
+              {% else %}
+                <img src="/static/images/avatar.svg" /> {% endif %}
             </div>
           </div>
           <div class="profile__info">
