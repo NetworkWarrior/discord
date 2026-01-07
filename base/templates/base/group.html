@@ -114,7 +114,11 @@
         {% for participant in participants %}
         <a href="{% url 'profile' participant.id %}" class="participant">
           <div class="avatar avatar--medium">
+            {%if participant.avatar%}
             <img src="{{ participant.avatar.url }}" />
+            {%else%}
+            <img src="/static/images/avatar.svg" />
+            {%endif%}
           </div>
           <p>
             {{ participant.username }}
