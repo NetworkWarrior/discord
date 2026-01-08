@@ -87,6 +87,8 @@ def group(request, id):
     participants = group.participants.all()
     group_messages = group.message_set.all()
     if request.method == 'POST':
+        if not request.user.is_authenticated:
+            return redirect('login')
         message = Message.objects.create(
             user = request.user,
             room = group,
@@ -195,6 +197,7 @@ def topics_page(request):
 def activity_page(request):
     room_messages = Message.objects.all()
     return render(request, 'base/activity.html', {'room_messages':room_messages})
+
 
 
 
